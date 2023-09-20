@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>login form</title>
+		<meta name="description" content="login form with glassmorphism style and validation by js" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<style>
+			
+			body{
+				padding: 0;
+				margin: 0;
+				font-family:sans-serif;
+				background: #845EC2 url("Background.jpeg");
+				background-size:100%;
+				background-repeat:no-repeat;
+			}
+			.wrapper{
+				width: 300px;
+				padding: 40px;
+				position:absolute;
+				top:50%;
+				left: 50%;
+				z-index:-100;
+				transform: translate(-50%, -50%); 
+			/*	background:#191919;*/
+				background:rgba(255,255,255,0.09);
+				backdrop-filter:blur(2px);
+				text-align: center;
+			}
+			
+			.wrapper::before{
+				content:"";
+				position:absolute;
+				left:-50px;
+				top:-50px;
+				z-index:-8;
+				width:200px;
+				height:200px;
+				border-radius:100px;
+				background:linear-gradient(45deg,red,blue);
+				animation: giggle 5s infinite linear alternate;
+			}
+			
+			.wrapper::after{
+			content:"";
+			position:absolute;
+			right:50px;
+			bottom:-50px;
+			z-index:-1;
+			width:150px;
+			height:150px;
+			border-radius:100px;
+			background:linear-gradient(45deg,pink,blue);
+			animation: giggle 10s infinite linear alternate;
+			}
+			
+			
+			input::-webkit-input-placeholder{
+			color:white;
+			font-size:16px;
+			}
+			.wrapper input[ type="text"] , .wrapper input[ type="password"]{
+		/*		border: 0;*/
+				background: none;
+				display: block;
+				margin:20px auto;
+				text-align: center; 
+				border: 2px solid #3498db;
+				padding: 14px 10px;
+				width:200px;
+				outline: none;
+				color: white;
+				font-size:16px;
+				border-radius:4px;
+				transition-property: width;
+				transition-duration: 0.1s;
+			}
+		
+			.wrapper h1{ 
+				color: white;	
+				text-transform: uppercase;
+			}
+			
+			
+			.wrapper input[ type="text"]:focus , .wrapper input[ type="password"]:focus {
+				width:280px;
+				border-color: green;
+				transition: 0.4s;
+			}
+			
+			.wrapper input[ type="submit"]{
+				background: none;
+				display: block;
+				margin:20px auto;
+				text-align: center; 
+				border: 2px solid #3498db;
+				padding: 14px 40px;
+				outline: none;
+				color: white;
+				border-radius:4px;
+				transition:0.5s;
+			}
+			.wrapper input[ type="submit"]:hover{
+				background:#3498db;
+			}
+			
+			/*boll animation*/
+			@keyframes giggle{
+				0%{
+					translate:10px 10px;
+				}
+				
+				50%{
+					translate:10px 40px;
+				}
+				
+				100%{
+				translate:20px 60px;
+				}
+			}
+		
+		</style>  
+		
+		
+	</head>
+	<body>
+		<form class="wrapper" onsubmit=" return checkform()">
+			
+				<h1 id="h">login </h1>
+			
+				<input type="text" placeholder="username" name="username" id="username">
+				<input type="password" placeholder="password" name="password" id="password">
+				<input type="submit" value="login">
+		
+		</form>
+	<noscript> your browser does not support JavaScript </noscript>
+	<script>
+	
+	let username = document.getElementById('username');
+	let password = document.getElementById('password');
+	let flag = 1;
+	function checkform(){
+		if(username.value == ""){
+			username.style.border = "2px solid red";
+			username.setAttribute("placeholder","username is empty");
+			
+			flag = 0;
+		}else if(username.value.length < 8){
+			username.style.border = "2px solid red";
+			username.value = "";
+			username.setAttribute("placeholder","min 8 letters required");
+			flag = 0;
+		}else{
+			username.style.border = "2px solid #3498db";
+			username.setAttribute("placeholder","username");
+			flag = 1;
+		}
+		
+		if(password.value == ""){
+			password.style.border = "2px solid red";
+			password.setAttribute("placeholder","password is empty");
+			flag = 0;
+		}else if(password.value.length < 8){
+			password.style.border = "2px solid red";
+			password.value = "";
+			password.setAttribute("placeholder","min 8 letters required");
+			flag = 0;
+		}else{
+		password.style.border = "2px solid #3498db";
+		/*password.setAttribute("placeholder","username");*/
+		flag = 1;
+		}
+		
+		if(flag){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	
+	</script>
+	</body>
+
+
+
+</html>
